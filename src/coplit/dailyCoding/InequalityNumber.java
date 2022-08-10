@@ -14,6 +14,7 @@ public class InequalityNumber {
 
     public static long inequalityNumber(String signs) {
         String[] arr = signs.split(",");
+        System.out.println(Arrays.toString(arr));
         int[] digits = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] reverseDigits = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
         long min = aux(-1, arr, new String[]{}, digits, new boolean[10]);
@@ -23,7 +24,9 @@ public class InequalityNumber {
     public static long aux(int idx, String[] signs, String[] nums, int[] digits, boolean[] isVisited) {
         if(idx == signs.length) {
             // 부등호 수를 만든 경우
+            System.out.println(Arrays.toString(nums));
             String result = String.join("", nums);
+            System.out.println(result);
             return Long.parseLong(result);
         }
 
