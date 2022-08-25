@@ -36,6 +36,7 @@ public class UglyNumbers {
         int idx3 = 0;
         int idx5 = 0;
 
+
         for(int i = 0; i < n; i++) {
             // 1. 가장 작은 수인 1에 2, 3, 5를 곱한 수 중에 가장 작은 수를 구한다.
             // 2. 2가 선택됨.
