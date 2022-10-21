@@ -1,5 +1,8 @@
 package coplit.dailyCoding;
 
+import lombok.Data;
+
+@Data
 public class Decompression {
     public String decompression(int[][] image) {
         return aux(0, image.length - 1, 0, image.length - 1, image);
