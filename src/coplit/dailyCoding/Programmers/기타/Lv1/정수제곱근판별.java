@@ -1,6 +1,6 @@
-package coplit.dailyCoding.Programmers.기타;
+package coplit.dailyCoding.Programmers.기타.Lv1;
 
-public class Lv1정수제곱근판별 {
+public class 정수제곱근판별 {
 
     public static void main(String[] args) {
         long solution = solution(121);
