@@ -32,7 +32,6 @@ public class GossipProtocol {
             int r = data[0];
             int c = data[1];
 
-
             for (int i = 0; i < 4; i++) {
                 int[] dir = dirs[i];
                 int nr = r+dir[0];
