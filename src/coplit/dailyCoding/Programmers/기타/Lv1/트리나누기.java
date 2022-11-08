@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class 트리나누기 {
@@ -19,6 +21,8 @@ public class 트리나누기 {
     public static String solution() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
+
         int n = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < n; i++) {
@@ -33,7 +37,16 @@ public class 트리나누기 {
             list.get(a).add(b);
             list.get(b).add(a);
         }
+
     }
 
-    public static
+    public static void dfs(ArrayList<ArrayList<Integer>> list, Map<Integer, Integer> map, int pre, int now) {
+        map.put(now, map.getOrDefault(now,0) + 1);
+
+        for (int i=0; i<list.get(now).size(); i++) {
+            if (pre == now) continue;
+            dfs(list,map,now,i);
+        }
+    }
+
 }
