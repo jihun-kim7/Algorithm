@@ -15,9 +15,7 @@ public class 트리나누기 {
 
     public static void main(String[] args) throws IOException {
 //        System.out.println(solution());
-        String s = "....aa1234..2.";
-        String s1 = s.replaceAll("[\\d]+", "zz");
-        System.out.println(s1);
+
     }
 
     public static String solution() throws IOException {
