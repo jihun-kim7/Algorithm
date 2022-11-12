@@ -1,16 +1,19 @@
 package coplit.dailyCoding.Programmers.기타.Lv1;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class 프린터 {
     public int solution(int[] priorities, int location) {
-        List<Integer> printer = Arrays.stream(priorities).boxed().collect(Collectors.toList());
+        Queue<Integer> printer = new LinkedList<>();
+
+        for (int i = 0; i < priorities.length; i++) {
+            printer.add(priorities[i]);
+        }
 
         int turn = 0;
 
         while (!printer.isEmpty()) {
-            Integer job = printer.remove(0);
+            int job = printer.poll();
             if (printer.stream().anyMatch(otherJob -> job < otherJob)) {
                 printer.add(job);
             } else {
@@ -19,11 +22,9 @@ public class 프린터 {
                     break;
                 }
             }
-
             location--;
-
             if (location < 0)
-                location = printer.size() - 1;
+                location = printer.size()-1;
         }
 
         return turn;
