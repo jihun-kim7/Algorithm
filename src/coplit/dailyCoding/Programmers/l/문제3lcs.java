@@ -3,6 +3,7 @@ package coplit.dailyCoding.Programmers.l;
 import java.util.Arrays;
 import java.util.HashMap;
 
+// LCS (최장 공통 부분 문자열)
 public class 문제3lcs {
     public static void main(String[] args) {
         문제3lcs m = new 문제3lcs();
