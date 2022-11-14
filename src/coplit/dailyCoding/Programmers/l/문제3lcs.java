@@ -5,10 +5,12 @@ import java.util.HashMap;
 
 // LCS (최장 공통 부분 문자열)
 public class 문제3lcs {
+
+    int answer = 1;
     public static void main(String[] args) {
         문제3lcs m = new 문제3lcs();
 //        System.out.println(m.solution("vxrvip", "xrviprvipvxrv"));
-        System.out.println(m.solution("abc", "bcab"));
+        System.out.println(m.solution("aaabbcc", "aabc"));
     }
 
     public int solution(String reference, String track) {
@@ -23,25 +25,26 @@ public class 문제3lcs {
             }
         }
 
-        int answer = 1;
-        int expect = 1;
-        for (int i=1; i<track.length()+1; i++) {
-            boolean findExpect = false;
-            for (int j=1; j<reference.length()+1; j++) {
-                if (arr[j][i] == expect){
-                    findExpect = true;
-                    break;
-                }
-            }
-            if (findExpect) {
-                answer = expect;
-                expect++;
-            } else {
-                expect = 1;
-            }
-        }
+        // 백트래킹
+        findAnswer(arr, track.length(),Integer.MAX_VALUE);
 
         return answer;
+    }
+
+    public void findAnswer(int[][] arr, int col,int minVal) {
+        if (col == 0) {
+            System.out.println("answer : " + minVal);
+            answer = minVal;
+            return;
+        }
+
+
+        for (int i=arr.length-1; i>=0; i--) {
+            System.out.println("row : " + i + " col : " + col + " arr[i][j] : " + arr[i][col]);
+            if (arr[i][col] <= answer) continue;
+            System.out.println("이걸로한다");
+            findAnswer(arr, col-arr[i][col],Math.min(minVal,arr[i][col]));
+        }
     }
 
 }

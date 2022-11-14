@@ -5,8 +5,10 @@ import java.util.HashMap;
 public class 문제3 {
     public static void main(String[] args) {
         문제3 m = new 문제3();
-        System.out.println(m.solution("vxrvip", "xrviprvipvxrv"));
+//        System.out.println(m.solution("vxrvip", "xrviprvipvxrv"));
 //        System.out.println(m.solution("abczxcv", "bczabcbczxcv"));
+//        System.out.println(m.solution("aaabbcc", "aabc"));
+        System.out.println(m.solution("abaacac", "aaac"));
     }
 
     public int solution(String reference, String track) {
@@ -54,6 +56,10 @@ public class 문제3 {
                     } else {
                         nowStr = new StringBuilder();
                         System.out.println("nowStr 초기화");
+                        if (mid > track.length()-1-i) {
+                            System.out.println("그냥 바로 false");
+                            return false;
+                        }
                     }
                 }
             }
