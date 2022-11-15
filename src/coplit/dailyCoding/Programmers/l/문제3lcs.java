@@ -33,16 +33,16 @@ public class 문제3lcs {
 
     public void findAnswer(int[][] arr, int col,int minVal) {
         if (col == 0) {
-            System.out.println("answer : " + minVal);
             answer = minVal;
             return;
         }
 
 
         for (int i=arr.length-1; i>=0; i--) {
-            System.out.println("row : " + i + " col : " + col + " arr[i][j] : " + arr[i][col]);
+            // answer 보다 작으면 실행할 이유가 없음
             if (arr[i][col] <= answer) continue;
-            System.out.println("이걸로한다");
+
+            //현재까지 진행한 값중 최소값 구하기
             findAnswer(arr, col-arr[i][col],Math.min(minVal,arr[i][col]));
         }
     }
