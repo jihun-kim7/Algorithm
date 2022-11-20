@@ -1,0 +1,1 @@
+def solution(n, arr1, arr2): return [''.join('#' if x == '1' else ' ' for x in bin(arr1[i]|arr2[i])[2:].zfill(n)) for i in range(n)]
