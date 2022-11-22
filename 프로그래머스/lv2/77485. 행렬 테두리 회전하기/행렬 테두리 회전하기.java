@@ -1,62 +1,54 @@
+import java.io.*;
 import java.util.*;
 
 class Solution {
-    
-    ArrayList<ArrayList<Integer>> square = new ArrayList<>();
+    static int[][] table;
+    static int minVal;
 
     public int[] solution(int rows, int columns, int[][] queries) {
-
-        int preNum = 0;
-        for(int r=0; r<rows; r++) {
-            square.add(new ArrayList<>());
-            for (int c=0; c<columns; c++) {
-                square.get(r).add(++preNum);
+        table = new int[rows + 1][columns + 1];
+        int count = 0;
+        for (int i = 1; i < rows + 1; i++) {
+            for (int j = 1; j < columns + 1; j++) {
+                ++count;
+                table[i][j] = count;
             }
         }
-
         int[] answer = new int[queries.length];
-
-        for(int i=0; i<queries.length; i++) {
-            answer[i] = rotate(square, queries[i]);
+        int i = 0;
+        for (int[] q : queries) {
+            minVal = 10000;
+            rotate(q[0], q[1], q[2], q[3]);
+            answer[i++] = minVal;
         }
+
 
         return answer;
     }
 
-    public int rotate(ArrayList<ArrayList<Integer>> square, int[] query) {
-        int x1 = query[0]-1;
-        int y1 = query[1]-1;
-        int x2 = query[2]-1;
-        int y2 = query[3]-1;
+    static void rotate(int sr, int sc, int er, int ec) {
+        Queue<Integer> q = new LinkedList<>();
 
-        int memory = square.get(x1).get(y2);
-        int minNum = memory;
-        
-        
-        // 한칸씩 계속 떙긴다
-        for(int y=y2; y>y1; y--) {
-            minNum = Math.min(minNum, square.get(x1).get(y));
-            square.get(x1).set(y,square.get(x1).get(y-1));
+        q.offer(table[sr][sc]);
+        for (int j = sc + 1; j < ec; j++) {//맨윗줄
+            q.offer(table[sr][j]);
+            table[sr][j] = q.remove();
+            minVal = Math.min(minVal, table[sr][j]);
         }
-
-        for(int x=x1; x<x2; x++) {
-            minNum = Math.min(minNum, square.get(x).get(y1));
-            square.get(x).set(y1,square.get(x+1).get(y1));
+        for (int i = sr; i < er; i++) {//우
+            q.offer(table[i][ec]);
+            table[i][ec] = q.remove();
+            minVal = Math.min(minVal, table[i][ec]);
         }
-
-        for(int y=y1; y<y2; y++) {
-            minNum = Math.min(minNum, square.get(x2).get(y));
-            square.get(x2).set(y,square.get(x2).get(y+1));
+        for (int j = ec; j > sc; j--) {//하
+            q.offer(table[er][j]);
+            table[er][j] = q.remove();
+            minVal = Math.min(minVal, table[er][j]);
         }
-
-        for(int x=x2; x>x1+1; x--) {
-            minNum = Math.min(minNum, square.get(x).get(y2));
-            square.get(x).set(y2,square.get(x-1).get(y2));
+        for (int i = er; i >= sr; i--) {//좌
+            q.offer(table[i][sc]);
+            table[i][sc] = q.remove();
+            minVal = Math.min(minVal, table[i][sc]);
         }
-
-        minNum = Math.min(minNum,square.get(x1+1).get(y2));
-        square.get(x1+1).set(y2,memory);
-
-        return minNum;
     }
 }
