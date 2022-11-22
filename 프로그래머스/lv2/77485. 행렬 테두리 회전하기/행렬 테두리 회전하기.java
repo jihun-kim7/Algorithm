@@ -1,60 +1,48 @@
 class Solution {
-    int[][] square;
-
+    static int map[][];
     public int[] solution(int rows, int columns, int[][] queries) {
-        
-        square = new int[rows][columns];
-        
-        int preNum = 0;
-        for(int r=0; r<rows; r++) {
-            for (int c=0; c<columns; c++) {
-                square[r][c] = ++preNum; 
-            }
-        }
-
         int[] answer = new int[queries.length];
 
-        for(int i=0; i<queries.length; i++) {
-            answer[i] = rotate(square, queries[i]);
+        map=new int[rows+1][columns+1];
+        int idx=1;
+        for(int i=1; i<=rows; i++){
+            for(int j=1; j<=columns; j++){
+                map[i][j]=idx++;
+            }
+        }
+        for(int i=0; i<queries.length; i++){
+
+            answer[i]=rotate(queries[i][0],queries[i][1],queries[i][2],queries[i][3]);
+
         }
 
         return answer;
-    }
-
-    public int rotate(int[][] square, int[] query) {
-        int x1 = query[0]-1;
-        int y1 = query[1]-1;
-        int x2 = query[2]-1;
-        int y2 = query[3]-1;
-
-        int memory = square[x1][y2];
-        int minNum = memory;
 
 
-        // 한칸씩 계속 떙긴다
-        for(int y=y2; y>y1; y--) {
-            minNum = Math.min(minNum, square[x1][y]);
-            square[x1][y] = square[x1][y-1];
+    }static int rotate(int x1,int y1,int x2,int y2){
+        int x=x1;
+        int y=y1;
+        int[]dx={0,-1,0,1};
+        int[]dy={1,0,-1,0};
+        int dir=3;
+        int temp=map[x][y];
+        int min=temp;
+        while(true){
+            if(x==x2&&y==y1){
+                dir=0;
+            }
+             if(x==x2&&y==y2)dir=1;
+             if(x==x1&&y==y2)dir=2;
+            map[x][y]=map[x+dx[dir]][y+dy[dir]];
+            x+=dx[dir];
+            y+=dy[dir];
+            min=Math.min(map[x][y],min);
+            if(x==x1&&y==y1){
+                map[x1][y1+1]=temp;
+                break;
+            }
         }
 
-        for(int x=x1; x<x2; x++) {
-            minNum = Math.min(minNum, square[x][y1]);
-            square[x][y1] = square[x+1][y1];
-        }
-
-        for(int y=y1; y<y2; y++) {
-            minNum = Math.min(minNum, square[x2][y]);
-            square[x2][y] = square[x2][y+1];
-        }
-
-        for(int x=x2; x>x1+1; x--) {
-            minNum = Math.min(minNum, square[x][y2]);
-            square[x][y2] = square[x-1][y2];
-        }
-
-        minNum = Math.min(minNum, square[x1+1][y2]);
-        square[x1+1][y2] = memory;
-        
-        return minNum;
+        return min;
     }
 }
