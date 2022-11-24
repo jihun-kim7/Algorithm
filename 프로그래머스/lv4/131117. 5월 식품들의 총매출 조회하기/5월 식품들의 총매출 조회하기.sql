@@ -1,4 +1,10 @@
 -- 코드를 입력하세요
-SELECT A.PRODUCT_ID, A.PRODUCT_NAME, A.PRICE * SUM(AMOUNT) AS TOTAL_SALES FROM FOOD_PRODUCT A,FOOD_ORDER B WHERE A.PRODUCT_ID = B.PRODUCT_ID AND B.PRODUCE_DATE LIKE '2022-05%' GROUP BY A.PRODUCT_ID ORDER BY TOTAL_SALES DESC, A.PRODUCT_ID;
 
-# SELECT * FROM FOOD_PRODUCT A,FOOD_ORDER B WHERE A.PRODUCT_ID = B.PRODUCT_ID
+-- SELECT * FROM FOOD_PRODUCT A, FOOD_ORDER B WHERE A.PRODUCT_ID = B.PRODUCT_ID;
+
+select o.product_id, p.product_name, sum(o.amount)*p.price total_sales
+from food_order o inner join food_product p
+    on o.product_id = p.product_id
+where to_char(o.produce_date, 'yyyy-mm') = '2022-05'
+group by o.product_id, p.product_name, p.price
+order by total_sales desc, o.product_id;
