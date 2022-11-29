@@ -1,44 +1,36 @@
-import java.util.HashMap;
-
-class Person {
-    String name;
-    Person parent;
-    int money;
-
-    public Person(String name, Person parent, int money) {
-        this.name = name;
-        this.parent = parent;
-        this.money = money;
-    }
-
-    void getReward(int i) {
-        int moneyToParent = (int) (i * 0.1);
-        this.money += i - moneyToParent;
-        if (this.parent != null)
-            this.parent.getReward(moneyToParent);
-    }
-}
+import java.util.*;
 
 class Solution {
-    public int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
-        HashMap<String, Person> personHashMap = new HashMap<>();
-        for (String name : enroll)
-            personHashMap.put(name, new Person(name, null, 0));
 
-        for (int i = 0; i < enroll.length; i++) {
-            if (referral[i].equals("-"))
-                continue;
-            personHashMap.get(enroll[i]).parent = personHashMap.get(referral[i]);
+    public int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
+        int[] answer = new int[enroll.length];
+        HashMap<String,String> referralMap = new HashMap<>();
+        HashMap<String,Integer> moneyMap = new HashMap<>();
+        for(int i=0; i<enroll.length; i++) {
+            referralMap.put(enroll[i],referral[i]);
+            moneyMap.put(enroll[i],0);
         }
 
-        for (int i = 0; i < seller.length; i++)
-            personHashMap.get(seller[i]).getReward(amount[i] * 100);
+        moneyMap.put("-",0);
 
-        int[] result = new int[enroll.length];
+        for(int i=0; i< seller.length; i++) {
+            dfs(seller[i],amount[i]*100,referralMap,moneyMap);
+        }
 
-        for (int i = 0; i < result.length; i++)
-            result[i] = personHashMap.get(enroll[i]).money;
+        for (int i = 0; i < enroll.length; i++) {
+            answer[i] = moneyMap.get(enroll[i]);
+        }
 
-        return result;
+        return answer;
+    }
+
+    public void dfs(String name, Integer sales, HashMap<String,String> referralMap, HashMap<String,Integer> moneyMap) {
+        int dividend = sales / 10;
+        if (name.equals("-") || dividend == 0) {
+            moneyMap.put(name,moneyMap.get(name)+sales);
+            return;
+        }
+        moneyMap.put(name, moneyMap.get(name) + sales - dividend);
+        dfs(referralMap.get(name), dividend, referralMap, moneyMap);
     }
 }
