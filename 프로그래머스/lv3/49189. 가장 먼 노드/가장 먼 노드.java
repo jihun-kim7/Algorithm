@@ -6,7 +6,6 @@ class Solution {
     // 그중에서 가장 큰 값의 node 개수 센게 정답
     ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
     public int solution(int n, int[][] edge) {
-        
         for (int i=0; i<n+1; i++) {
             graph.add(new ArrayList<>());
         }
@@ -21,7 +20,7 @@ class Solution {
         int cnt = 0;
         int[] path = new int[n+1];
         path[1] = -1;
-        
+
         while (!q.isEmpty()) {
             int size = q.size();
             cnt++;
@@ -37,16 +36,15 @@ class Solution {
             }
         }
 
-        int max = Arrays.stream(path).max().orElse(-1);
+
         int answer = 0;
 
         for (int i=1; i<=n; i++) {
-            if (path[i] == max) {
+            if (path[i] == cnt-1) {
                 answer++;
             }
         }
 
-        System.out.println(Arrays.toString(path));
 
         return answer;
     }
