@@ -1,31 +1,25 @@
+import java.util.regex.*;
+
 class Solution {
     public String solution(String s) {
         
-        boolean setUpperCase = true;
+//         boolean setUpperCase = true;
         
-        String answer = "";
+//         String[] arr = s.toLowerCase().split("");
         
-        for (int i=0; i<s.length(); i++) {
-            if (setUpperCase) {
-                if (Character.isLetter(s.charAt(i))) {
-                    answer += String.valueOf(s.charAt(i)).toUpperCase();
-                    setUpperCase = false;
-                    continue;
-                } else if (s.charAt(i) != ' '){
-                    setUpperCase = false;
-                }
-                answer += s.charAt(i);
-            } else {
-                if (Character.isLetter(s.charAt(i))) {
-                    answer += String.valueOf(s.charAt(i)).toLowerCase();
-                    continue;
-                } else if (s.charAt(i) == ' ') {
-                    setUpperCase = true;
-                } 
-                answer += s.charAt(i);
-            }
+//         String answer = "";
+        
+//         for (String str : arr) {
+//             answer += setUpperCase ? str.toUpperCase() : str;
+//             setUpperCase = str.equals(" ") ? true : false;
+//         }
+        
+//         return answer;
+        
+        Matcher m = Pattern.compile("\\b([\\w])([\\w]*)").matcher(s);
+        while (m.find()) {
+            s = s.replaceAll("\\b" + m.group(), m.group(1).toUpperCase() + m.group(2).toLowerCase());
         }
-        
-        return answer;
+        return s;
     }
 }
