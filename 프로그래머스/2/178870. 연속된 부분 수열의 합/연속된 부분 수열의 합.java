@@ -4,7 +4,7 @@ public class Solution {
         int minLen = Integer.MAX_VALUE;
         int[] answer = new int[2];
         
-        while (start <= end && end < sequence.length) {
+        while (end < sequence.length) {
             if (sum == k) {
                 // 현재 부분 수열의 길이가 더 짧은 경우
                 if (end - start < minLen) {
@@ -25,12 +25,6 @@ public class Solution {
                 // sum이 k보다 크면 start를 오른쪽으로 이동하여 합을 감소
                 sum -= sequence[start];
                 start++;
-            }
-            
-            // 만약 start가 end보다 커졌다면 end도 start에 맞춰서 이동
-            if (start > end && start < sequence.length) {
-                end = start;
-                sum = sequence[start]; // sum을 재설정
             }
         }
         
