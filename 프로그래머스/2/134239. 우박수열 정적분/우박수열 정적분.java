@@ -29,9 +29,6 @@ class Solution {
             if (x < a) {
                 answer[i] = -1.0;
                 continue;
-            } else if (a == x) {
-                answer[i] = 0.0;
-                continue;
             }
 
             double sum = 0;
