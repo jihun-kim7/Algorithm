@@ -10,6 +10,7 @@ public class Main {
     static int[] arr;
     static boolean[] visited;
     static int N,M;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,15 +24,16 @@ public class Main {
         visited = new boolean[N];
 
         dfs(0);
+        System.out.print(sb);
     }
 
     public static void dfs(int depth) {
 
         if (depth == M) {
             for (int j : arr) {
-                System.out.print(j + " ");
+                sb.append(j).append(' ');
             }
-            System.out.println();
+            sb.append("\n");
             return;
         }
 
