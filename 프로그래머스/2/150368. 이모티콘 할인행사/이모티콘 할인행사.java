@@ -16,6 +16,9 @@ class Solution {
         findCartesianProduct(cp, new int[emoticonsLen], 0);
 
         List<int[]> amounts = new ArrayList<>();
+        
+        int maxSubscriber = 0;
+        int maxSumPrice = 0;
 
         for (int[] discountRates : cp) {
             int[] amount = new int[users.length];
@@ -40,24 +43,17 @@ class Solution {
                 }
             }
 
-            amounts.add(new int[]{subscriber, sum});
-        }
-
-        int subscriber = 0;
-        int sum = 0;
-
-        for (int[] amount : amounts) {
-            if (amount[0] > subscriber) {
-                subscriber = amount[0];
-                sum = amount[1];
-            } else if (amount[0] == subscriber) {
-                if (amount[1] > sum) {
-                    sum = amount[1];
+            if (subscriber > maxSubscriber) {
+                maxSubscriber = subscriber;
+                maxSumPrice = sum;
+            } else if (subscriber == maxSubscriber) {
+                if (sum > maxSumPrice) {
+                    maxSumPrice = sum;
                 }
             }
         }
 
-        return new int[]{subscriber, sum};
+        return new int[]{maxSubscriber, maxSumPrice};
     }
 
     public void findCartesianProduct(List<int[]> cp, int[] discountList, int depth) {
