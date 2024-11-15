@@ -2,55 +2,40 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] picks, String[] minerals) {
-         int answer = 0;
+        int answer = 0;
 
         int dia = picks[0];
         int iron = picks[1];
         int stone = picks[2];
+        int totalPicks = dia + iron + stone;
 
-        // 곡갱이 총 개수
-        int totalPick = dia + iron + stone;
+        int[][] picksFatigue = new int[totalPicks][6];
 
-        // 광석 총 개수
-        int n = minerals.length;
-
-        int[][] mineralGroup = new int[totalPick][6];
-
-        // 5개 기준으로 피로도 계산
-        for (int i = 0; i < Math.min(totalPick * 5, n); i += 5) {
+        for (int i = 0; i < Math.min(totalPicks * 5, minerals.length); i += 5) {
             int sum = 0;
-            int damage = 0;
+            int fatigue = 0;
 
-            for (int j = i; j < Math.min(i + 5, n); j++) {
-                switch (minerals[j]) {
-                    case "diamond":
-                        damage = 25;
-                        break;
-                    case "iron":
-                        damage = 5;
-                        break;
-                    case "stone":
-                        damage = 1;
-                        break;
+
+            for (int j = i; j < Math.min(i + 5, minerals.length); j++) {
+
+                if (minerals[j].equals("diamond")) {
+                    fatigue = 25;
+                } else if (minerals[j].equals("iron")) {
+                    fatigue = 5;
+                } else {
+                    fatigue = 1;
                 }
 
-                sum += damage;
-                mineralGroup[i / 5][j % 5 + 1] = damage;
+                sum += fatigue;
+                picksFatigue[i / 5][j % 5 + 1] = fatigue;
             }
 
-            mineralGroup[i / 5][0] = sum;
+            picksFatigue[i / 5][0] = sum;
         }
 
-        // 피로도 합 기준으로 내림차순 정렬
-        Arrays.sort(mineralGroup, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o2[0] - o1[0];
-            }
-        });
+        Arrays.sort(picksFatigue, (a, b) -> b[0] - a[0]);
 
-        for (int i = 0; i < totalPick; i++) {
-            int[] temp = mineralGroup[i];
+        for (int i = 0; i < picksFatigue.length; i++) {
             String pick = "";
 
             if (dia > 0) {
@@ -64,21 +49,21 @@ class Solution {
                 pick = "stone";
             }
 
-			// 광물별 피로도 계산 
             for (int j = 1; j < 6; j++) {
                 switch (pick) {
                     case "diamond":
-                        answer += (int) Math.ceil(temp[j] / 25.0);
+                        answer += (int) Math.ceil(picksFatigue[i][j] / 25.0);
                         break;
                     case "iron":
-                        answer += (int) Math.ceil(temp[j] / 5.0);
+                        answer += (int) Math.ceil(picksFatigue[i][j] / 5.0);
                         break;
                     case "stone":
-                        answer += temp[j];
+                        answer += picksFatigue[i][j];
                         break;
                 }
             }
         }
+
 
         return answer;
     }
