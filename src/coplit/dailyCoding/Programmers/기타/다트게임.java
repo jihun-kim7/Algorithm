@@ -1,4 +1,4 @@
-package coplit.dailyCoding.Programmers.기타.Lv1;
+package coplit.dailyCoding.Programmers.기타;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -9,13 +9,13 @@ public class 다트게임 {
         System.out.println(solution("1S2D*3T"));
     }
     public static int solution(String dartResult) {
-        Map<String,Integer> bonus = new HashMap<>() {{
+        Map<String,Integer> bonus = new HashMap() {{
             put("S",1);
             put("D",2);
             put("T",3);
         }};
 
-        Map<String, Integer> option = new HashMap<>() {{
+        Map<String, Integer> option = new HashMap() {{
             put("*",2);
             put("#",-1);
             put("",1);
