@@ -1,4 +1,4 @@
-package coplit.dailyCoding;
+package coplit.dailyCoding.solo;
 
 import lombok.Data;
 

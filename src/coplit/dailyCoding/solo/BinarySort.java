@@ -1,4 +1,4 @@
-package coplit.dailyCoding;
+package coplit.dailyCoding.solo;
 
 // 정렬된 배열에서 특정 target값의 idx 찾기
 

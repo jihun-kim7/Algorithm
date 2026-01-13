@@ -78,7 +78,7 @@ public class 광물캐기 {
 //    int answer;
 //    List<Integer> answerList = new ArrayList<>();
 //
-//    public int solution(int[] picks, String[] minerals) {
+//    public int solution(int[] picks, StringTest[] minerals) {
 //        answer = 0;
 //        backTracking(picks, minerals, 0);
 //        answer = answerList.stream().min(Integer::compareTo).orElse(0);
@@ -86,7 +86,7 @@ public class 광물캐기 {
 //        return answer;
 //    }
 //
-//    public void backTracking(int[] picks, String[] minerals, int depth) {
+//    public void backTracking(int[] picks, StringTest[] minerals, int depth) {
 //        if (depth == minerals.length || Arrays.stream(picks).allMatch(i -> i == 0)) {
 //            answerList.add(answer);
 //            return;

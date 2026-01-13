@@ -5,11 +5,11 @@ class Solution {
         
 //         boolean setUpperCase = true;
         
-//         String[] arr = s.toLowerCase().split("");
+//         StringTest[] arr = s.toLowerCase().split("");
         
-//         String answer = "";
+//         StringTest answer = "";
         
-//         for (String str : arr) {
+//         for (StringTest str : arr) {
 //             answer += setUpperCase ? str.toUpperCase() : str;
 //             setUpperCase = str.equals(" ") ? true : false;
 //         }

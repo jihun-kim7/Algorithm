@@ -1,4 +1,4 @@
-package coplit.dailyCoding;
+package coplit.dailyCoding.solo;
 
 
 public class Main {

@@ -3,7 +3,7 @@ package coplit.dailyCoding.Programmers.기타.Lv1;
 public class 삼총사 {
 
     // 그냥 3중 for문 써도 상관 없음 . nC3 조합만들기 문제
-//    public static void main(String[] args) {
+//    public static void main(StringTest[] args) {
 //        System.out.println(solution(new int[]{-2, 3, 0, 2, -5}));
 //    }
 

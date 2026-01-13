@@ -1,4 +1,4 @@
-package coplit.dailyCoding;
+package coplit.dailyCoding.solo;
 
 import java.util.*;
 import java.util.stream.Collectors;

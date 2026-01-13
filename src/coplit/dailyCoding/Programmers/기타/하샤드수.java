@@ -4,9 +4,9 @@ package coplit.dailyCoding.Programmers.기타.Lv1;
 public class 하샤드수 {
     public boolean solution(int x) {
         // 첫 풀이
-//        String[] arr = String.valueOf(x).split("");
+//        StringTest[] arr = StringTest.valueOf(x).split("");
 //        int sum = 0;
-//        for (String s : arr) {
+//        for (StringTest s : arr) {
 //            sum += Integer.parseInt(s);
 //        }
 //

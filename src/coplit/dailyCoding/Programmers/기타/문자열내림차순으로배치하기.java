@@ -9,9 +9,9 @@ public class 문자열내림차순으로배치하기 {
     }
 
     public static String solution(String s) {
-//        String[] arr = s.split("");
+//        StringTest[] arr = s.split("");
 //        Arrays.sort(arr, Comparator.reverseOrder());
-//        return String.join("",arr);
+//        return StringTest.join("",arr);
 
         char[] arr = s.toCharArray();
         Arrays.sort(arr);

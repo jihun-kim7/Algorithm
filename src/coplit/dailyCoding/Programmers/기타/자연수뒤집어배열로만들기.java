@@ -15,7 +15,7 @@ public class 자연수뒤집어배열로만들기 {
 
         // 이게 훨씬 빠름
         /**
-        String s = String.valueOf(n);
+        StringTest s = StringTest.valueOf(n);
         int[] answer = new int[s.length()];
         for (int i=0; i<s.length(); i++) {
             answer[i] = Character.getNumericValue(s.charAt(s.length() - 1 - i));

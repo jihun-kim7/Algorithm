@@ -1,4 +1,4 @@
-package coplit.dailyCoding;
+package coplit.dailyCoding.solo;
 
 public class SpiralTraversal {
     public static String spiralTraversal(Character[][] matrix) {
